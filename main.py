@@ -22,6 +22,10 @@ class Racetrack:
         self.y_range = range(0, 20)
         self.state_space = {}
         self.maximum_velocity = 5
+        self.start_line = [[x, 0] for x in self.x_range]
+        self.finish_line = [[x, len(self.y_range)] for x in self.x_range]
+        print(self.start_line)
+        print(self.finish_line)
         
         state_counter = 0
         for x in self.x_range:
@@ -44,6 +48,12 @@ class Racetrack:
                                 "value": 0,
                                 "cumulative weight": 0,
                             }
+                            
+                        # State policy.
+                        self.state_space[state]["policies"] = {
+                            "target": 0,
+                            "behaviour": random.choice(self.ACTIONS.as_tuple()),
+                        }
                             
                         state_counter += 1
                         
